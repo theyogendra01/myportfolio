@@ -4,10 +4,18 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+    background: linear-gradient(45deg,
+            rgba(var(--primary-color-rgb), 0.03),
+            rgba(var(--accent-color-rgb), 0.03));
+    transition: all var(--transition-speed) ease;
 }
 
 section {
@@ -16,11 +24,113 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    background: rgba(var(--bg-color-rgb), 0.7);
+    backdrop-filter: blur(10px);
+}
+
+section:not(:in-viewport) {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.section-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.section-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Animated section headings */
+section h2 {
+    position: relative;
+    display: inline-block;
+    filter: blur(0.6px);
+    animation: blur-focus 3s infinite alternate-reverse;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite, blur-focus 3s infinite alternate-reverse;
+}
+
+.card {
+    background: rgba(var(--bg-color-rgb), 0.8);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow:
+        0 4px 6px rgba(var(--primary-color-rgb), 0.02),
+        0 10px 15px rgba(var(--primary-color-rgb), 0.03);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.06);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 8px 12px rgba(var(--primary-color-rgb), 0.04),
+        0 16px 24px rgba(var(--primary-color-rgb), 0.06);
+    border-color: rgba(var(--primary-color-rgb), 0.1);
 }
 
 .footer {
     text-align: center;
     padding: 2rem;
     background: var(--light-bg);
-    color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.theme-switcher {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+}
+
+.theme-switcher:hover {
+    background: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes blur-focus {
+    0% {
+        filter: blur(0px);
+    }
+
+    50% {
+        filter: blur(1px);
+    }
+
+    100% {
+        filter: blur(0px);
+    }
 }

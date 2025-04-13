@@ -1,8 +1,148 @@
 :root {
-    --primary-color: #6c63ff;
-    --secondary-color: #2a2a2a;
-    --accent-color: #ff6b6b;
-    --text-color: #333;
-    --light-bg: #f8f9fa;
+    /* Base colors */
+    --primary-color: #2563eb;
+    /* Professional blue */
+    --primary-color-rgb: 37, 99, 235;
+    --accent-color: #7c3aed;
+    /* Deep purple */
+    --accent-color-rgb: 124, 58, 237;
+
+    /* Light theme */
+    --bg-color: #ffffff;
+    --bg-color-rgb: 255, 255, 255;
+    --text-color: #1e293b;
+    /* Slate 800 */
+    --card-bg: #f8fafc;
+    /* Slate 50 */
+    --border-color: #e2e8f0;
+    /* Slate 200 */
+    --secondary-color: #3b82f6;
+    /* Blue 500 */
+
+    /* Dark theme */
+    --dark-bg: #0f172a;
+    /* Slate 900 */
+    --dark-bg-rgb: 15, 23, 42;
+    --dark-text: #f1f5f9;
+    /* Slate 100 */
+    --dark-card-bg: #1e293b;
+    /* Slate 800 */
+    --dark-border: #334155;
+    /* Slate 700 */
+
+    /* Effects */
+    --soft-glow: 0 4px 15px rgba(var(--primary-color-rgb), 0.1);
+    --primary-glow: 0 6px 20px rgba(var(--primary-color-rgb), 0.2);
+    --accent-glow: 0 6px 20px rgba(var(--accent-color-rgb), 0.2);
+
+    /* Progress bar */
+    --scroll-progress-bg: rgba(var(--primary-color-rgb), 0.1);
+    --scroll-progress-fill: var(--primary-color);
+
+    /* Transitions */
     --transition-speed: 0.3s;
+
+    /* Spacing */
+    --section-spacing: 6rem;
+    --component-spacing: 2rem;
+    --content-width: 1200px;
+
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+    --font-code: 'Fira Code', monospace;
+
+    /* Font sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+}
+
+[data-theme="light"] {
+    --bg-color: #ffffff;
+    --bg-color-rgb: 255, 255, 255;
+    --text-color: #1e293b;
+    --primary-color: #2563eb;
+    --accent-color: #7c3aed;
+    --primary-color-rgb: 37, 99, 235;
+    --accent-color-rgb: 124, 58, 237;
+    --card-bg: #f8fafc;
+    --light-bg: #f1f5f9;
+    --secondary-color: #3b82f6;
+}
+
+/* Apply transitions to common elements */
+body,
+section,
+.navigation,
+.project-card,
+.skill-card,
+.social-link,
+.form-group input,
+.form-group textarea,
+button,
+.modal-content {
+    transition: var(--theme-transition);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+    --bg-color: var(--dark-bg);
+    --bg-color-rgb: var(--dark-bg-rgb);
+    --text-color: var(--dark-text);
+    --card-bg: var(--dark-card-bg);
+    --border-color: var(--dark-border);
+    --secondary-color: #60a5fa;
+    /* Blue 400 for better contrast */
+    --soft-glow: 0 4px 15px rgba(var(--primary-color-rgb), 0.15);
+    --scroll-progress-bg: rgba(var(--primary-color-rgb), 0.15);
+
+    /* Dark theme enhancements */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --hover-shadow: var(--primary-glow);
+
+    .skill-card:hover,
+    .project-card:hover {
+        box-shadow: var(--primary-glow);
+    }
+
+    .social-link:hover {
+        box-shadow: var(--accent-glow);
+    }
+
+    .navigation {
+        background: rgba(var(--bg-color), 0.8);
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Media query variables */
+@media (max-width: 1200px) {
+    :root {
+        --content-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-spacing: 4rem;
+        --component-spacing: 1.5rem;
+        --text-4xl: 2rem;
+        --text-5xl: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --section-spacing: 3rem;
+        --component-spacing: 1rem;
+        --text-4xl: 1.75rem;
+        --text-5xl: 2.25rem;
+    }
 }

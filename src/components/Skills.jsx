@@ -63,16 +63,27 @@ const Skills = () => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
             >
-                <h2>Technical Proficiency</h2>
+                <h2 className="blur-text">Technical Proficiency</h2>
                 {Object.entries(groupedSkills).map(([category, skills]) => (
                     <div key={category} className="skills-category">
-                        <h3>{category}</h3>
+                        <motion.h3
+                            className="blur-text"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            {category}
+                        </motion.h3>
                         <div className="skills-grid">
                             {skills.map((skill, index) => (
                                 <motion.div
                                     key={skill.name}
                                     className="skill-card"
                                     variants={itemVariants}
+                                    whileHover={{
+                                        scale: 1.03,
+                                        boxShadow: '0 8px 25px rgba(var(--primary-color-rgb), 0.2)'
+                                    }}
                                 >
                                     <h4>{skill.name}</h4>
                                     <div className="skill-bar-container">
@@ -81,9 +92,18 @@ const Skills = () => {
                                             initial={{ width: 0 }}
                                             animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
                                             transition={{ duration: 1, delay: index * 0.1 }}
-                                            style={{ backgroundColor: skill.color }}
+                                            style={{
+                                                background: `linear-gradient(90deg, ${skill.color}, var(--accent-color))`
+                                            }}
                                         />
-                                        <span className="skill-percentage">{skill.level}%</span>
+                                        <motion.span
+                                            className="skill-percentage"
+                                            initial={{ opacity: 0 }}
+                                            animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                                            transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+                                        >
+                                            {skill.level}%
+                                        </motion.span>
                                     </div>
                                 </motion.div>
                             ))}

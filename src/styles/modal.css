@@ -12,15 +12,184 @@
     padding: 2rem;
 }
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn var(--transition-speed) ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 .modal-content {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.1);
     padding: 2rem;
     border-radius: 15px;
-    max-width: 800px;
-    width: 100%;
-    max-height: 90vh;
+    max-width: 600px;
+    /* Reduced from 800px */
+    width: 90%;
+    max-height: 85vh;
+    /* Reduced from 90vh */
     overflow-y: auto;
     position: relative;
+    animation: scaleIn var(--transition-speed) ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform var(--transition-speed) ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.modal-body img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.modal-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.modal-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.modal-btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.modal-btn-primary:hover {
+    background: var(--primary-color-dark);
+    transform: translateY(-2px);
+}
+
+.modal-btn-secondary {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.modal-btn-secondary:hover {
+    background: var(--bg-color);
+    transform: translateY(-2px);
+}
+
+/* Custom scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--card-bg);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Modal animations */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes modalOverlayFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-overlay.active {
+    animation: modalOverlayFadeIn var(--transition-speed) ease forwards;
+}
+
+.modal-overlay.active .modal-content {
+    animation: modalFadeIn var(--transition-speed) ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.25rem;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .modal-btn {
+        width: 100%;
+    }
 }
 
 .close-button {
@@ -64,15 +233,24 @@
 .modal-links {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
+    position: sticky;
+    bottom: 0;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-top: 1px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
 .modal-links a {
-    padding: 0.8rem 1.5rem;
+    flex: 1;
+    padding: 0.8rem 1.2rem;
     background: var(--primary-color);
-    color: white;
+    color: var(--bg-color);
     text-decoration: none;
     border-radius: 8px;
-    transition: background 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .modal-links a:hover {

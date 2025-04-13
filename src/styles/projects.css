@@ -1,5 +1,6 @@
 .projects-section {
     padding: 6rem 2rem;
+    background: var(--bg-color);
 }
 
 .projects-container {
@@ -17,23 +18,62 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* Changed to always show 2 columns */
     gap: 2rem;
     margin: 0 auto;
 }
 
 .project-card {
-    background: white;
+    background: rgba(var(--bg-color-rgb), 0.8);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:
+        0 4px 6px rgba(var(--primary-color-rgb), 0.02),
+        0 10px 15px rgba(var(--primary-color-rgb), 0.03);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.06);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    padding: 2px;
+    background: linear-gradient(45deg,
+            var(--primary-color),
+            var(--accent-color));
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 8px 12px rgba(var(--primary-color-rgb), 0.04),
+        0 16px 24px rgba(var(--primary-color-rgb), 0.06);
+    border-color: rgba(var(--primary-color-rgb), 0.1);
 }
 
 .project-image {
     position: relative;
     padding-top: 56.25%;
-    /* 16:9 aspect ratio */
     overflow: hidden;
 }
 
@@ -57,7 +97,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(42, 42, 42, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,6 +128,7 @@
 
 .project-info {
     padding: 1.5rem;
+    color: var(--text-color);
 }
 
 .tech-stack {
@@ -99,16 +140,17 @@
 
 .tech-tag {
     padding: 0.4rem 0.8rem;
-    background: rgba(108, 99, 255, 0.1);
+    background: rgba(var(--primary-color-rgb), 0.08);
     color: var(--primary-color);
     border-radius: 20px;
     font-size: 0.85rem;
+    font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .tech-tag:hover {
     background: var(--primary-color);
-    color: white;
+    color: var(--bg-color);
     transform: translateY(-2px);
 }
 
@@ -127,24 +169,35 @@
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    background: transparent;
 }
 
 .project-links a:hover {
     background: var(--primary-color);
-    color: white;
+    color: var(--bg-color);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.2);
 }
 
-/* Modal Styles Enhancement */
+/* Modal Styles */
+.project-modal {
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(8px);
+}
+
 .modal-content {
-    background: white;
+    background: rgba(var(--bg-color-rgb), 0.95);
+    color: var(--text-color);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.08);
     padding: 2.5rem;
     border-radius: 15px;
     max-width: 800px;
     width: 95%;
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow:
+        0 4px 6px rgba(var(--primary-color-rgb), 0.02),
+        0 10px 15px rgba(var(--primary-color-rgb), 0.03);
 }
 
 .modal-content img {
@@ -165,28 +218,39 @@
     color: #666;
 }
 
+.close-button {
+    color: var(--text-color);
+}
+
 .modal-links {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
+    position: sticky;
+    bottom: 0;
+    padding: 1rem;
+    background: rgba(var(--bg-color-rgb), 0.95);
+    border-top: 1px solid rgba(var(--primary-color-rgb), 0.08);
+    backdrop-filter: blur(8px);
+    margin: 1rem -2rem -2rem -2rem;
 }
 
 .modal-links a {
     flex: 1;
     padding: 1rem 1.5rem;
-    background: var(--primary-color);
-    color: white;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-color);
     text-decoration: none;
     border-radius: 8px;
     text-align: center;
     font-weight: 500;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.15);
 }
 
 .modal-links a:hover {
-    background: #5650cc;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.2);
+    box-shadow: 0 6px 15px rgba(var(--primary-color-rgb), 0.2);
 }
 
 /* Image Gallery Styles */

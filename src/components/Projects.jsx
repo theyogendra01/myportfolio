@@ -83,7 +83,7 @@ const Projects = () => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
             >
-                <h2>My Projects</h2>
+                <h2 className="blur-text">My Projects</h2>
                 <div className="projects-grid">
                     {projectsData.map((project) => (
                         <motion.div
@@ -92,7 +92,7 @@ const Projects = () => {
                             variants={projectVariants}
                             whileHover={{
                                 scale: 1.03,
-                                boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                                boxShadow: '0 8px 25px rgba(var(--primary-color-rgb), 0.2)'
                             }}
                             onClick={() => {
                                 setSelectedProject(project);
@@ -101,26 +101,58 @@ const Projects = () => {
                         >
                             <div className="project-image">
                                 <img src={project.image} alt={project.title} />
-                                <div className="project-overlay">
+                                <motion.div
+                                    className="project-overlay"
+                                    initial={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                >
                                     <motion.div
                                         className="overlay-content"
-                                        initial={{ opacity: 0 }}
-                                        whileHover={{ opacity: 1 }}
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileHover={{ y: 0, opacity: 1 }}
+                                        transition={{ duration: 0.3 }}
                                     >
-                                        <h3>{project.title}</h3>
+                                        <h3 className="blur-text">{project.title}</h3>
                                         <p>{project.description}</p>
                                     </motion.div>
-                                </div>
+                                </motion.div>
                             </div>
                             <div className="project-info">
                                 <div className="tech-stack">
                                     {project.technologies.map((tech) => (
-                                        <span key={tech} className="tech-tag">{tech}</span>
+                                        <motion.span
+                                            key={tech}
+                                            className="tech-tag"
+                                            whileHover={{
+                                                scale: 1.1,
+                                                backgroundColor: 'var(--primary-color)',
+                                                color: 'var(--bg-color)'
+                                            }}
+                                        >
+                                            {tech}
+                                        </motion.span>
                                     ))}
                                 </div>
                                 <div className="project-links">
-                                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
-                                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <motion.a
+                                        href={project.liveLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        Live Demo
+                                    </motion.a>
+                                    <motion.a
+                                        href={project.githubLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        GitHub
+                                    </motion.a>
                                 </div>
                             </div>
                         </motion.div>
@@ -139,9 +171,9 @@ const Projects = () => {
                     >
                         <motion.div
                             className="modal-content"
-                            initial={{ y: 50 }}
-                            animate={{ y: 0 }}
-                            exit={{ y: 50 }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 50, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button

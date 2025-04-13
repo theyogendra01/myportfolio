@@ -1,6 +1,8 @@
 .contact-section {
     background: var(--light-bg);
     padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .contact-container {
@@ -21,8 +23,105 @@
     gap: 4rem;
 }
 
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.contact-info p {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.social-link {
+    position: relative;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    background: rgba(var(--bg-color-rgb), 0.8);
+    backdrop-filter: blur(8px);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: var(--soft-glow);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.08);
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg,
+            var(--primary-color),
+            var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-link svg {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-color);
+    border-color: transparent;
+    box-shadow: var(--primary-glow);
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.social-link:hover svg {
+    color: var(--bg-color);
+    transform: scale(1.1) rotate(360deg);
+}
+
+.location-info {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.location-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.location-info p {
+    margin-bottom: 0;
+    color: var(--text-color);
+}
+
 .contact-form form {
-    width: 100%;
+    background: rgba(var(--bg-color-rgb), 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow:
+        0 4px 6px rgba(var(--primary-color-rgb), 0.02),
+        0 10px 15px rgba(var(--primary-color-rgb), 0.03);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.06);
+    backdrop-filter: blur(10px);
 }
 
 .form-group {
@@ -33,9 +132,11 @@
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    border: 1px solid rgba(42, 42, 42, 0.1);
+    background: rgba(var(--bg-color-rgb), 0.9);
+    border: 1px solid rgba(var(--primary-color-rgb), 0.1);
     border-radius: 8px;
     font-size: 1rem;
+    color: var(--text-color);
     transition: all 0.3s ease;
 }
 
@@ -43,7 +144,14 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+    background: var(--bg-color);
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .form-group textarea {
@@ -54,22 +162,98 @@
 .submit-button {
     width: 100%;
     padding: 1rem;
-    background: var(--primary-color);
-    color: white;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-color);
     border: none;
     border-radius: 8px;
     font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: 0.5s;
 }
 
 .submit-button:hover {
-    background: #5650cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.submit-button:hover::before {
+    left: 100%;
 }
 
 .submit-button.submitting {
-    opacity: 0.7;
+    position: relative;
     cursor: not-allowed;
+    animation: pulse 1.5s infinite;
+}
+
+.submit-button.submitting::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    animation: loading 1.5s infinite;
+}
+
+.submit-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.submit-status.success {
+    background: rgba(46, 213, 115, 0.1);
+    color: #2ed573;
+    border: 1px solid rgba(46, 213, 115, 0.2);
+}
+
+.submit-status.error {
+    background: rgba(255, 71, 87, 0.1);
+    color: #ff4757;
+    border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .success-message {
@@ -81,39 +265,14 @@
     text-align: center;
 }
 
-.contact-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    color: var(--secondary-color);
+@media (max-width: 768px) {
+    .social-links {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-.contact-info p {
-    margin-bottom: 2rem;
-    color: #666;
-}
-
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.social-links a {
-    font-size: 1.5rem;
-    color: var(--secondary-color);
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--primary-color);
-}
-
-.location-info h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--secondary-color);
-}
-
-.location-info p {
-    margin-bottom: 0;
+@media (max-width: 480px) {
+    .social-links {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

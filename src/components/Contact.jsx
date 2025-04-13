@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { SiGeeksforgeeks, SiLeetcode, SiHackerrank } from 'react-icons/si';
+import { CgWebsite } from 'react-icons/cg';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
+    const [formState, setFormState] = useState({
         name: '',
         email: '',
         message: ''
@@ -12,149 +13,158 @@ const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
 
-    const [ref, inView] = useInView({
-        threshold: 0.3,
-        triggerOnce: true
-    });
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormState(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitStatus(null);
 
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setSubmitStatus('success');
-        setIsSubmitting(false);
-    };
+        try {
+            // Simulating form submission delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+            // Reset form after successful submission
+            setFormState({
+                name: '',
+                email: '',
+                message: ''
+            });
+            setSubmitStatus('success');
+        } catch (error) {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const socialLinks = [
         { icon: <FaGithub />, url: 'https://github.com/theyogendra01', label: 'GitHub' },
-        { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/yogendra-swami-b49985252', label: 'LinkedIn' },
-        { icon: <FaEnvelope />, url: 'mailto:yogendraswami297@gmail.com', label: 'Email' }
+        { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/yogender-swami-b4a696236', label: 'LinkedIn' },
+        { icon: <FaWhatsapp />, url: 'https://wa.me/918559854596', label: 'WhatsApp' },
+        { icon: <SiGeeksforgeeks />, url: 'https://www.geeksforgeeks.org/user/yogendrasi915/', label: 'GeeksforGeeks' },
+        { icon: <SiLeetcode />, url: 'https://leetcode.com/u/theyogendra01/', label: 'LeetCode' },
+        { icon: <SiHackerrank />, url: 'https://www.hackerrank.com/profile/yogendraswami297', label: 'HackerRank' }
     ];
 
     return (
-        <section className="contact-section" id="contact" ref={ref}>
-            <motion.div
-                className="contact-container"
+        <div className="contact-container">
+            <motion.h2
                 initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2>Get In Touch</h2>
-
-                <div className="contact-content">
-                    <motion.div
-                        className="contact-info"
-                        initial={{ x: 50 }}
-                        animate={inView ? { x: 0 } : { x: 50 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        <h3>Connect With Me</h3>
-                        <p>Feel free to reach out through any of these platforms:</p>
-
-                        <div className="social-links">
-                            {socialLinks.map((link, index) => (
-                                <motion.a
-                                    key={index}
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={inView ? {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: { delay: 0.6 + (index * 0.1) }
-                                    } : {}}
-                                    className="social-link"
-                                >
-                                    {link.icon}
-                                </motion.a>
-                            ))}
-                        </div>
-
-                        <div className="location-info">
-                            <h4>Location</h4>
-                            <p>Jaipur, India</p>
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        className="contact-form"
-                        initial={{ x: -50 }}
-                        animate={inView ? { x: 0 } : { x: -50 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <motion.input
-                                    whileFocus={{ scale: 1.01 }}
-                                    type="text"
-                                    name="name"
-                                    placeholder="Your Name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <motion.input
-                                    whileFocus={{ scale: 1.01 }}
-                                    type="email"
-                                    name="email"
-                                    placeholder="Your Email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <motion.textarea
-                                    whileFocus={{ scale: 1.01 }}
-                                    name="message"
-                                    placeholder="Your Message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    required
-                                    rows={5}
-                                />
-                            </div>
-
-                            <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                type="submit"
-                                disabled={isSubmitting}
-                                className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
+                Get In Touch
+            </motion.h2>
+            <div className="contact-content">
+                <motion.div
+                    className="contact-info"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out for collaborations or just a friendly hello</p>
+                    <div className="social-links">
+                        {socialLinks.map(({ icon, url, label }) => (
+                            <motion.a
+                                key={label}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="social-link"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                aria-label={label}
                             >
-                                {isSubmitting ? 'Sending...' : 'Send Message'}
-                            </motion.button>
+                                {icon}
+                            </motion.a>
+                        ))}
+                    </div>
+                    <div className="location-info">
+                        <h4>Location</h4>
+                        <p>Jaipur, Rajasthan</p>
+                    </div>
+                </motion.div>
 
-                            {submitStatus === 'success' && (
+                <motion.div
+                    className="contact-form"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Your Name"
+                                value={formState.name}
+                                onChange={handleInputChange}
+                                required
+                                disabled={isSubmitting}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Your Email"
+                                value={formState.email}
+                                onChange={handleInputChange}
+                                required
+                                disabled={isSubmitting}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <textarea
+                                name="message"
+                                placeholder="Your Message"
+                                value={formState.message}
+                                onChange={handleInputChange}
+                                required
+                                disabled={isSubmitting}
+                            />
+                        </div>
+                        <motion.button
+                            className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
+                            type="submit"
+                            disabled={isSubmitting}
+                            whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                            whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                        >
+                            {isSubmitting ? 'Sending...' : 'Send Message'}
+                        </motion.button>
+
+                        <AnimatePresence>
+                            {submitStatus && (
                                 <motion.div
-                                    className="success-message"
-                                    initial={{ opacity: 0, y: 10 }}
+                                    className={`submit-status ${submitStatus}`}
+                                    initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
                                 >
-                                    Message sent successfully!
+                                    {submitStatus === 'success' ? (
+                                        'Message sent successfully!'
+                                    ) : (
+                                        'Failed to send message. Please try again.'
+                                    )}
                                 </motion.div>
                             )}
-                        </form>
-                    </motion.div>
-                </div>
-            </motion.div>
-        </section>
+                        </AnimatePresence>
+                    </form>
+                </motion.div>
+            </div>
+        </div>
     );
 };
 

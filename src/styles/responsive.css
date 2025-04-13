@@ -14,8 +14,7 @@
     .hero-section {
         height: auto;
         min-height: 100vh;
-        padding-top: 6rem;
-        /* Adjusted to prevent overlap with fixed nav */
+        padding-top: 5rem;
     }
 
     .hero-section .hero-content {
@@ -66,13 +65,36 @@
     }
 
     .social-links {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        gap: 1rem;
+        padding: 0.5rem;
+        justify-items: center;
         justify-content: center;
         font-size: 1.8rem;
-        gap: 2rem;
     }
 
     .social-link {
         padding: 0.8rem;
+    }
+
+    .contact-form {
+        margin-top: 2rem;
+    }
+
+    .theme-switcher {
+        bottom: 2rem;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.2rem;
+    }
+
+    .scroll-to-top {
+        bottom: 2rem;
+        left: 1rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -102,6 +124,31 @@
 
     .tech-items span {
         font-size: 0.8rem;
+    }
+
+    .social-links {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+    }
+
+    .social-link {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .theme-switcher {
+        bottom: 1.5rem;
+        right: 1rem;
+    }
+
+    .scroll-to-top {
+        bottom: 1.5rem;
+        left: 1rem;
     }
 }
 

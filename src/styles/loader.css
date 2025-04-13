@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: var(--secondary-color);
+    background: var(--bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,20 +13,48 @@
 
 .loader-content {
     text-align: center;
-    color: white;
+    color: var(--text-color);
+    position: relative;
 }
 
 .loader-content h1 {
     font-size: 3rem;
     margin-bottom: 2rem;
+    position: relative;
+    animation: glitch 1s infinite;
+}
+
+.loader-content h1::before,
+.loader-content h1::after {
+    content: 'Welcome';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.loader-content h1::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+.loader-content h1::after {
+    left: -2px;
+    text-shadow: 2px 0 var(--primary-color);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-1 2s infinite linear alternate-reverse;
 }
 
 .progress-bar {
     width: 200px;
     height: 3px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(var(--primary-color-rgb), 0.1);
     border-radius: 3px;
     overflow: hidden;
+    position: relative;
 }
 
 .progress-bar::after {
@@ -34,7 +62,9 @@
     display: block;
     width: 40%;
     height: 100%;
-    background: var(--primary-color);
+    background: linear-gradient(90deg,
+            var(--primary-color),
+            var(--accent-color));
     animation: loading 1.5s infinite;
 }
 
@@ -45,5 +75,22 @@
 
     100% {
         transform: translateX(250%);
+    }
+}
+
+@keyframes glitch {
+
+    2%,
+    64% {
+        transform: translate(2px, 0) skew(0deg);
+    }
+
+    4%,
+    60% {
+        transform: translate(-2px, 0) skew(0deg);
+    }
+
+    62% {
+        transform: translate(0, 0) skew(5deg);
     }
 }

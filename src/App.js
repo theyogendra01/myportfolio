@@ -220,7 +220,9 @@ function App() {
           </main>
 
           <footer className="footer">
-            <p>&copy; {new Date().getFullYear()} Yogender Swami. All rights reserved.</p>
+            <span className="copyright">&copy; {new Date().getFullYear()} Yogender Swami</span>
+            <p>Full Stack Developer | Building Digital Experiences</p>
+            <p>All rights reserved</p>
           </footer>
         </>
       )}

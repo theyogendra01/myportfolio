@@ -1,13 +1,27 @@
 .contact-section {
-    background: var(--light-bg);
+    background: var(--bg-color);
     padding: 6rem 2rem;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(var(--primary-color-rgb), 0.05), rgba(var(--accent-color-rgb), 0.05));
+    z-index: 0;
 }
 
 .contact-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .contact-container h2 {
@@ -44,20 +58,18 @@
 
 .social-link {
     position: relative;
-    font-size: 1.8rem;
-    color: var(--text-color);
-    background: rgba(var(--bg-color-rgb), 0.8);
-    backdrop-filter: blur(8px);
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--card-bg);
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: 1.5rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    box-shadow: var(--soft-glow);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.08);
 }
 
 .social-link::before {
@@ -73,7 +85,7 @@
 
 .social-link svg {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     transition: all 0.3s ease;
 }
 
@@ -81,6 +93,7 @@
     transform: translateY(-5px);
     background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     color: var(--bg-color);
+    border-radius: 50%;
     border-color: transparent;
     box-shadow: var(--primary-glow);
 }
@@ -114,14 +127,10 @@
 }
 
 .contact-form form {
-    background: rgba(var(--bg-color-rgb), 0.8);
+    background: var(--card-bg);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow:
-        0 4px 6px rgba(var(--primary-color-rgb), 0.02),
-        0 10px 15px rgba(var(--primary-color-rgb), 0.03);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.06);
-    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -132,10 +141,9 @@
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    background: rgba(var(--bg-color-rgb), 0.9);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.1);
+    border: 2px solid rgba(var(--primary-color-rgb), 0.1);
     border-radius: 8px;
-    font-size: 1rem;
+    background: var(--bg-color);
     color: var(--text-color);
     transition: all 0.3s ease;
 }
@@ -145,7 +153,6 @@
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
-    background: var(--bg-color);
 }
 
 .form-group input:disabled,
@@ -155,21 +162,20 @@
 }
 
 .form-group textarea {
-    resize: vertical;
     min-height: 150px;
+    resize: vertical;
 }
 
 .submit-button {
-    width: 100%;
-    padding: 1rem;
     background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-    color: var(--bg-color);
+    color: white;
     border: none;
+    padding: 1rem 2rem;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
@@ -190,7 +196,7 @@
 
 .submit-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.2);
+    box-shadow: 0 6px 15px rgba(var(--primary-color-rgb), 0.2);
 }
 
 .submit-button:hover::before {

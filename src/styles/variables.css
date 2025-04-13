@@ -1,39 +1,21 @@
 :root {
     /* Base colors */
-    --primary-color: #2563eb;
-    /* Professional blue */
-    --primary-color-rgb: 37, 99, 235;
-    --accent-color: #7c3aed;
-    /* Deep purple */
-    --accent-color-rgb: 124, 58, 237;
+    --primary-color: #6c63ff;
+    --primary-color-rgb: 108, 99, 255;
+    --accent-color: #4c45cc;
+    --accent-color-rgb: 76, 69, 204;
+    --text-color: #2d2d2d;
+    --text-color-light: #666666;
 
-    /* Light theme */
+    /* Background colors */
     --bg-color: #ffffff;
     --bg-color-rgb: 255, 255, 255;
-    --text-color: #1e293b;
-    /* Slate 800 */
-    --card-bg: #f8fafc;
-    /* Slate 50 */
-    --border-color: #e2e8f0;
-    /* Slate 200 */
-    --secondary-color: #3b82f6;
-    /* Blue 500 */
-
-    /* Dark theme */
-    --dark-bg: #0f172a;
-    /* Slate 900 */
-    --dark-bg-rgb: 15, 23, 42;
-    --dark-text: #f1f5f9;
-    /* Slate 100 */
-    --dark-card-bg: #1e293b;
-    /* Slate 800 */
-    --dark-border: #334155;
-    /* Slate 700 */
+    --card-bg: #f8f9fa;
+    --section-bg: #f4f6f8;
 
     /* Effects */
-    --soft-glow: 0 4px 15px rgba(var(--primary-color-rgb), 0.1);
-    --primary-glow: 0 6px 20px rgba(var(--primary-color-rgb), 0.2);
-    --accent-glow: 0 6px 20px rgba(var(--accent-color-rgb), 0.2);
+    --soft-glow: 0 5px 15px rgba(var(--primary-color-rgb), 0.15);
+    --primary-glow: 0 8px 25px rgba(var(--primary-color-rgb), 0.3);
 
     /* Progress bar */
     --scroll-progress-bg: rgba(var(--primary-color-rgb), 0.1);
@@ -67,14 +49,14 @@
 [data-theme="light"] {
     --bg-color: #ffffff;
     --bg-color-rgb: 255, 255, 255;
-    --text-color: #1e293b;
-    --primary-color: #2563eb;
-    --accent-color: #7c3aed;
-    --primary-color-rgb: 37, 99, 235;
-    --accent-color-rgb: 124, 58, 237;
-    --card-bg: #f8fafc;
-    --light-bg: #f1f5f9;
-    --secondary-color: #3b82f6;
+    --text-color: #2d2d2d;
+    --text-color-light: #666666;
+    --primary-color: #6c63ff;
+    --accent-color: #4c45cc;
+    --primary-color-rgb: 108, 99, 255;
+    --accent-color-rgb: 76, 69, 204;
+    --card-bg: #f8f9fa;
+    --section-bg: #f4f6f8;
 }
 
 /* Apply transitions to common elements */
@@ -93,14 +75,24 @@ button,
 
 /* Dark theme overrides */
 [data-theme="dark"] {
-    --bg-color: var(--dark-bg);
-    --bg-color-rgb: var(--dark-bg-rgb);
-    --text-color: var(--dark-text);
-    --card-bg: var(--dark-card-bg);
-    --border-color: var(--dark-border);
+    --primary-color: #8b84ff;
+    --primary-color-rgb: 139, 132, 255;
+    --accent-color: #6c63ff;
+    --accent-color-rgb: 108, 99, 255;
+    --text-color: #e0e0e0;
+    --text-color-light: #a0a0a0;
+
+    /* Dark theme background colors */
+    --bg-color: #1a1a1a;
+    --bg-color-rgb: 26, 26, 26;
+    --card-bg: #2d2d2d;
+    --section-bg: #242424;
+    --border-color: #334155;
+    /* Slate 700 */
     --secondary-color: #60a5fa;
     /* Blue 400 for better contrast */
-    --soft-glow: 0 4px 15px rgba(var(--primary-color-rgb), 0.15);
+    --soft-glow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --primary-glow: 0 8px 25px rgba(var(--primary-color-rgb), 0.2);
     --scroll-progress-bg: rgba(var(--primary-color-rgb), 0.15);
 
     /* Dark theme enhancements */

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
-import { SiGeeksforgeeks, SiLeetcode, SiHackerrank } from 'react-icons/si';
-import { CgWebsite } from 'react-icons/cg';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaWhatsapp, FaHackerrank } from 'react-icons/fa';
+import { SiGeeksforgeeks, SiLeetcode } from 'react-icons/si';
 
 const Contact = () => {
     const [formState, setFormState] = useState({
@@ -50,7 +49,7 @@ const Contact = () => {
         { icon: <FaWhatsapp />, url: 'https://wa.me/918559854596', label: 'WhatsApp' },
         { icon: <SiGeeksforgeeks />, url: 'https://www.geeksforgeeks.org/user/yogendrasi915/', label: 'GeeksforGeeks' },
         { icon: <SiLeetcode />, url: 'https://leetcode.com/u/theyogendra01/', label: 'LeetCode' },
-        { icon: <SiHackerrank />, url: 'https://www.hackerrank.com/profile/yogendraswami297', label: 'HackerRank' }
+        { icon: <FaHackerrank style={{ fontSize: '1.4em' }} />, url: 'https://www.hackerrank.com/profile/yogendraswami297', label: 'HackerRank' }
     ];
 
     return (

@@ -83,8 +83,26 @@ section h2 {
 .footer {
     text-align: center;
     padding: 2rem;
-    background: var(--light-bg);
+    background: var(--card-bg);
     color: var(--text-color);
+    border-top: 1px solid rgba(var(--primary-color-rgb), 0.1);
+    box-shadow: 0 -4px 20px rgba(var(--primary-color-rgb), 0.05);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.footer .copyright {
+    display: inline-block;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(var(--primary-color-rgb), 0.05);
+    margin-bottom: 0.5rem;
 }
 
 .theme-switcher {

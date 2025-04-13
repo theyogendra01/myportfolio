@@ -53,8 +53,18 @@
 
 .tech-categories {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* Changed to row to display categories side by side */
     gap: 2rem;
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+}
+
+.tech-category {
+    flex: 1;
+    /* Each category takes equal space */
+    min-width: 200px;
+    /* Minimum width before wrapping */
 }
 
 .tech-category h4 {

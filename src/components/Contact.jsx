@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -35,14 +35,13 @@ const Contact = () => {
     };
 
     const socialLinks = [
-        { icon: <FaGithub />, url: 'https://github.com/YogenderS' },  // Please replace with your actual GitHub username
-        { icon: <FaLinkedin />, url: 'https://linkedin.com/in/yogender-swami' }, // Please replace with your actual LinkedIn username
-        { icon: <FaTwitter />, url: 'https://twitter.com/yogender_swami' },  // Please replace with your actual Twitter username
-        { icon: <FaEnvelope />, url: 'mailto:yogenderswami.dev@gmail.com' }  // Please replace with your actual email
+        { icon: <FaGithub />, url: 'https://github.com/theyogendra01', label: 'GitHub' },
+        { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/yogendra-swami-b49985252', label: 'LinkedIn' },
+        { icon: <FaEnvelope />, url: 'mailto:yogendraswami297@gmail.com', label: 'Email' }
     ];
 
     return (
-        <section className="contact-section" ref={ref}>
+        <section className="contact-section" id="contact" ref={ref}>
             <motion.div
                 className="contact-container"
                 initial={{ opacity: 0, y: 20 }}
@@ -52,6 +51,43 @@ const Contact = () => {
                 <h2>Get In Touch</h2>
 
                 <div className="contact-content">
+                    <motion.div
+                        className="contact-info"
+                        initial={{ x: 50 }}
+                        animate={inView ? { x: 0 } : { x: 50 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                        <h3>Connect With Me</h3>
+                        <p>Feel free to reach out through any of these platforms:</p>
+
+                        <div className="social-links">
+                            {socialLinks.map((link, index) => (
+                                <motion.a
+                                    key={index}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={inView ? {
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: { delay: 0.6 + (index * 0.1) }
+                                    } : {}}
+                                    className="social-link"
+                                >
+                                    {link.icon}
+                                </motion.a>
+                            ))}
+                        </div>
+
+                        <div className="location-info">
+                            <h4>Location</h4>
+                            <p>Jaipur, India</p>
+                        </div>
+                    </motion.div>
+
                     <motion.div
                         className="contact-form"
                         initial={{ x: -50 }}
@@ -115,42 +151,6 @@ const Contact = () => {
                                 </motion.div>
                             )}
                         </form>
-                    </motion.div>
-
-                    <motion.div
-                        className="contact-info"
-                        initial={{ x: 50 }}
-                        animate={inView ? { x: 0 } : { x: 50 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        <h3>Connect With Me</h3>
-                        <p>Feel free to reach out through any of these platforms:</p>
-
-                        <div className="social-links">
-                            {socialLinks.map((link, index) => (
-                                <motion.a
-                                    key={index}
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={inView ? {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: { delay: 0.6 + (index * 0.1) }
-                                    } : {}}
-                                >
-                                    {link.icon}
-                                </motion.a>
-                            ))}
-                        </div>
-
-                        <div className="location-info">
-                            <h4>Location</h4>
-                            <p>Jaipur, India</p>
-                        </div>
                     </motion.div>
                 </div>
             </motion.div>

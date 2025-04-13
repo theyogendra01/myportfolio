@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 // Typing Test images
-import typingTestImg from '../assets/typing-test/Screenshot (7).png';
-import typingTestImg2 from '../assets/typing-test/Screenshot (8).png';
-import typingTestImg3 from '../assets/typing-test/Screenshot (9).png';
+import typingTestImg from '../assets/typing-test/ty1.png';
+import typingTestImg2 from '../assets/typing-test/ty2.png';
+import typingTestImg3 from '../assets/typing-test/ty3.png';
 // Image Search images
-import imgSearchImg from '../assets/img-search/Screenshot (10).png';
-import imgSearchImg2 from '../assets/img-search/Screenshot (11).png';
-import imgSearchImg3 from '../assets/img-search/Screenshot (12).png';
-import imgSearchImg4 from '../assets/img-search/Screenshot (13).png';
+import imgSearchImg from '../assets/img-search/thumnail-img.png';
+import imgSearchImg2 from '../assets/img-search/2.png';
+import imgSearchImg3 from '../assets/img-search/3.png';
+import imgSearchImg4 from '../assets/img-search/4.png';
 
 const projectsData = [
     {
@@ -76,7 +76,7 @@ const Projects = () => {
     };
 
     return (
-        <section className="projects-section" ref={ref}>
+        <section className="projects-section" id="projects" ref={ref}>
             <motion.div
                 className="projects-container"
                 variants={containerVariants}

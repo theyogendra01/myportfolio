@@ -10,6 +10,7 @@ const About = () => {
 
     return (
         <motion.section
+            id="about"
             ref={ref}
             className="about-section"
             initial={{ opacity: 0 }}
@@ -33,11 +34,10 @@ const About = () => {
                     </p>
                     <div className="resume-link">
                         <a
-                            href="https://drive.google.com/file/d/1UPib5xjk5h5rFXshr8O13AOvpOMe3EZa/view?usp=drive_link"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href={require('../assets/Yogender.pdf')}
+                            download="Yogender_Resume.pdf"
                         >
-                            View My Resume
+                            My Resume
                         </a>
                     </div>
                     <div className="tech-stack">

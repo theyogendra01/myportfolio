@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
+import { Link, Events, scrollSpy } from 'react-scroll';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -19,11 +19,30 @@ import './styles/responsive.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Simulate loading time
     setTimeout(() => setIsLoading(false), 2000);
+
+    // Initialize scrollspy
+    Events.scrollEvent.register('begin', (to) => {
+      setActiveSection(to);
+    });
+
+    scrollSpy.update();
+
+    return () => {
+      Events.scrollEvent.remove('begin');
+    };
   }, []);
+
+  const navLinks = [
+    { to: 'home', label: 'Home' },
+    { to: 'about', label: 'About' },
+    { to: 'projects', label: 'Projects' },
+    { to: 'skills', label: 'Skills' },
+    { to: 'contact', label: 'Contact' }
+  ];
 
   return (
     <div className="App">
@@ -43,11 +62,19 @@ function App() {
         <>
           <nav className="navigation">
             <div className="nav-content">
-              <Link to="home" smooth={true} duration={500}>Home</Link>
-              <Link to="about" smooth={true} duration={500}>About</Link>
-              <Link to="skills" smooth={true} duration={500}>Skills</Link>
-              <Link to="projects" smooth={true} duration={500}>Projects</Link>
-              <Link to="contact" smooth={true} duration={500}>Contact</Link>
+              {navLinks.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  className={activeSection === to ? 'active' : ''}
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
           </nav>
 
@@ -72,8 +99,8 @@ function App() {
             </section>
 
             <About />
-            <Skills />
             <Projects />
+            <Skills />
             <Contact />
           </main>
 

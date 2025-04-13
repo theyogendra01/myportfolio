@@ -1,39 +1,42 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+// Typing Test images
+import typingTestImg from '../assets/typing-test/Screenshot (7).png';
+import typingTestImg2 from '../assets/typing-test/Screenshot (8).png';
+import typingTestImg3 from '../assets/typing-test/Screenshot (9).png';
+// Image Search images
+import imgSearchImg from '../assets/img-search/Screenshot (10).png';
+import imgSearchImg2 from '../assets/img-search/Screenshot (11).png';
+import imgSearchImg3 from '../assets/img-search/Screenshot (12).png';
+import imgSearchImg4 from '../assets/img-search/Screenshot (13).png';
 
 const projectsData = [
     {
         id: 1,
-        title: 'E-Commerce Platform',
-        description: 'A full-featured online shopping platform with cart functionality and payment integration.',
-        technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-        image: '/projects/ecommerce.jpg',
-        liveLink: 'https://example.com',
-        githubLink: 'https://github.com/yourusername/project'
+        title: 'Typy Test',
+        description: 'A modern, React-based typing speed test application that measures typing speed (WPM), accuracy, and provides real-time feedback. The app features multiple test modes including word count and quotes, with a clean interface and support for both light and dark themes. Users can track their performance and share their results across various social platforms.',
+        technologies: ['React.js', 'JavaScript (ES6+)', 'CSS Modules', 'HTML5'],
+        image: typingTestImg,
+        additionalImages: [typingTestImg2, typingTestImg3],
+        liveLink: 'https://typing-test-beryl-seven.vercel.app',
+        githubLink: 'https://github.com/theyogendra01/Typing-test'
     },
     {
         id: 2,
-        title: 'Social Media Dashboard',
-        description: 'Analytics dashboard for social media metrics with real-time updates.',
-        technologies: ['React', 'Firebase', 'Chart.js', 'Material-UI'],
-        image: '/projects/dashboard.jpg',
-        liveLink: 'https://example.com',
-        githubLink: 'https://github.com/yourusername/project'
-    },
-    {
-        id: 3,
-        title: 'Task Management App',
-        description: 'Collaborative task management tool with drag-and-drop functionality.',
-        technologies: ['React', 'Redux', 'Node.js', 'PostgreSQL'],
-        image: '/projects/taskapp.jpg',
-        liveLink: 'https://example.com',
-        githubLink: 'https://github.com/yourusername/project'
+        title: 'Image Search',
+        description: 'Developed a dynamic image search web application that allows users to search for images. Designed a responsive and user-friendly interface using CSS for better accessibility. Ensured optimized loading of images by implementing pagination or lazy loading.',
+        technologies: ['HTML5', 'CSS3', 'JavaScript'],
+        image: imgSearchImg,
+        additionalImages: [imgSearchImg2, imgSearchImg3, imgSearchImg4],
+        liveLink: 'https://theyogendra01.github.io/Image-Search/',
+        githubLink: 'https://github.com/theyogendra01/Image-Search'
     }
 ];
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [ref, inView] = useInView({
         threshold: 0.2,
         triggerOnce: true
@@ -60,6 +63,18 @@ const Projects = () => {
         }
     };
 
+    const nextImage = (e, project) => {
+        e.stopPropagation();
+        const totalImages = [project.image, ...project.additionalImages].length;
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % totalImages);
+    };
+
+    const prevImage = (e, project) => {
+        e.stopPropagation();
+        const totalImages = [project.image, ...project.additionalImages].length;
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
+    };
+
     return (
         <section className="projects-section" ref={ref}>
             <motion.div
@@ -79,7 +94,10 @@ const Projects = () => {
                                 scale: 1.03,
                                 boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
                             }}
-                            onClick={() => setSelectedProject(project)}
+                            onClick={() => {
+                                setSelectedProject(project);
+                                setCurrentImageIndex(0);
+                            }}
                         >
                             <div className="project-image">
                                 <img src={project.image} alt={project.title} />
@@ -132,7 +150,30 @@ const Projects = () => {
                             >
                                 ×
                             </button>
-                            <img src={selectedProject.image} alt={selectedProject.title} />
+                            <div className="image-gallery">
+                                <button className="gallery-nav prev" onClick={(e) => prevImage(e, selectedProject)}>‹</button>
+                                <img
+                                    src={
+                                        currentImageIndex === 0
+                                            ? selectedProject.image
+                                            : selectedProject.additionalImages[currentImageIndex - 1]
+                                    }
+                                    alt={`${selectedProject.title} - View ${currentImageIndex + 1}`}
+                                />
+                                <button className="gallery-nav next" onClick={(e) => nextImage(e, selectedProject)}>›</button>
+                                <div className="image-indicators">
+                                    {[selectedProject.image, ...selectedProject.additionalImages].map((_, index) => (
+                                        <span
+                                            key={index}
+                                            className={`indicator ${currentImageIndex === index ? 'active' : ''}`}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setCurrentImageIndex(index);
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
                             <h3>{selectedProject.title}</h3>
                             <p>{selectedProject.description}</p>
                             <div className="tech-stack">

@@ -5,7 +5,17 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import './styles/App.scss';
+import './styles/global.css';
+import './styles/variables.css';
+import './styles/loader.css';
+import './styles/navigation.css';
+import './styles/hero.css';
+import './styles/about.css';
+import './styles/skills.css';
+import './styles/projects.css';
+import './styles/contact.css';
+import './styles/modal.css';
+import './styles/responsive.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,14 +59,14 @@ function App() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  Hi, I'm <span className="highlight">Your Name</span>
+                  Hi, I'm <span className="highlight">Yogender Swami</span>
                 </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  Web Developer & Designer
+                  Full Stack Developer
                 </motion.p>
               </div>
             </section>
@@ -68,7 +78,7 @@ function App() {
           </main>
 
           <footer className="footer">
-            <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Yogender Swami. All rights reserved.</p>
           </footer>
         </>
       )}

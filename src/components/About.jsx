@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import profileImage from '../assets/profile.jpg';
 
 const About = () => {
     const [ref, inView] = useInView({
@@ -24,20 +25,50 @@ const About = () => {
                 >
                     <h2>About Me</h2>
                     <p>
-                        I am a passionate web developer with a keen eye for design and a love
-                        for creating beautiful, functional websites. With expertise in modern
-                        web technologies, I bring ideas to life through clean code and
-                        intuitive user experiences.
+                        "Engineering Ideas into Digital Reality."
                     </p>
+                    <p>
+                        Hi, I'm Yogendra — a developer who brings imagination to life with code and creativity,
+                        building not just apps, but experiences.
+                    </p>
+                    <div className="resume-link">
+                        <a
+                            href="https://drive.google.com/file/d/1UPib5xjk5h5rFXshr8O13AOvpOMe3EZa/view?usp=drive_link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View My Resume
+                        </a>
+                    </div>
                     <div className="tech-stack">
                         <h3>My Tech Stack</h3>
-                        <div className="tech-items">
-                            <span>React</span>
-                            <span>JavaScript</span>
-                            <span>HTML5</span>
-                            <span>CSS3/SASS</span>
-                            <span>Node.js</span>
-                            <span>Git</span>
+                        <div className="tech-categories">
+                            <div className="tech-category">
+                                <h4>Languages</h4>
+                                <div className="tech-items">
+                                    <span>Java</span>
+                                    <span>JavaScript</span>
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                </div>
+                            </div>
+                            <div className="tech-category">
+                                <h4>Frameworks & Libraries</h4>
+                                <div className="tech-items">
+                                    <span>React</span>
+                                    <span>Spring Boot</span>
+                                    <span>Bootstrap</span>
+                                    <span>Tailwind</span>
+                                </div>
+                            </div>
+                            <div className="tech-category">
+                                <h4>Tools</h4>
+                                <div className="tech-items">
+                                    <span>GitHub</span>
+                                    <span>Postman</span>
+                                    <span>VS Code</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
@@ -49,8 +80,7 @@ const About = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                 >
                     <div className="image-container">
-                        {/* Add your image here */}
-                        <div className="placeholder-image" />
+                        <img src={profileImage} alt="Yogendra" className="profile-image" />
                     </div>
                 </motion.div>
             </div>

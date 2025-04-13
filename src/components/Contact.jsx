@@ -35,10 +35,10 @@ const Contact = () => {
     };
 
     const socialLinks = [
-        { icon: <FaGithub />, url: 'https://github.com/yourusername' },
-        { icon: <FaLinkedin />, url: 'https://linkedin.com/in/yourusername' },
-        { icon: <FaTwitter />, url: 'https://twitter.com/yourusername' },
-        { icon: <FaEnvelope />, url: 'mailto:your.email@example.com' }
+        { icon: <FaGithub />, url: 'https://github.com/YogenderS' },  // Please replace with your actual GitHub username
+        { icon: <FaLinkedin />, url: 'https://linkedin.com/in/yogender-swami' }, // Please replace with your actual LinkedIn username
+        { icon: <FaTwitter />, url: 'https://twitter.com/yogender_swami' },  // Please replace with your actual Twitter username
+        { icon: <FaEnvelope />, url: 'mailto:yogenderswami.dev@gmail.com' }  // Please replace with your actual email
     ];
 
     return (
@@ -149,7 +149,7 @@ const Contact = () => {
 
                         <div className="location-info">
                             <h4>Location</h4>
-                            <p>Your City, Country</p>
+                            <p>Jaipur, India</p>
                         </div>
                     </motion.div>
                 </div>

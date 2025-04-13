@@ -2,12 +2,22 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const skillsData = [
-    { name: 'Frontend Development', level: 90, color: '#6c63ff' },
-    { name: 'React.js', level: 85, color: '#61dafb' },
-    { name: 'UI/UX Design', level: 80, color: '#ff6b6b' },
-    { name: 'JavaScript', level: 85, color: '#f7df1e' },
-    { name: 'CSS/SASS', level: 90, color: '#ff69b4' },
-    { name: 'Responsive Design', level: 95, color: '#2ecc71' },
+    // Languages
+    { name: 'Java', level: 85, color: '#f89820', category: 'Languages' },
+    { name: 'JavaScript', level: 90, color: '#f7df1e', category: 'Languages' },
+    { name: 'HTML5', level: 95, color: '#e34c26', category: 'Languages' },
+    { name: 'CSS3', level: 90, color: '#264de4', category: 'Languages' },
+
+    // Frameworks & Libraries
+    { name: 'React', level: 88, color: '#61dafb', category: 'Frameworks' },
+    { name: 'Spring Boot', level: 82, color: '#6db33f', category: 'Frameworks' },
+    { name: 'Bootstrap', level: 85, color: '#7952b3', category: 'Frameworks' },
+    { name: 'Tailwind', level: 80, color: '#38b2ac', category: 'Frameworks' },
+
+    // Tools & Technologies
+    { name: 'Git/GitHub', level: 88, color: '#f05032', category: 'Tools' },
+    { name: 'VS Code', level: 92, color: '#007acc', category: 'Tools' },
+    { name: 'Postman', level: 85, color: '#ff6c37', category: 'Tools' }
 ];
 
 const Skills = () => {
@@ -36,6 +46,15 @@ const Skills = () => {
         }
     };
 
+    // Group skills by category
+    const groupedSkills = skillsData.reduce((acc, skill) => {
+        if (!acc[skill.category]) {
+            acc[skill.category] = [];
+        }
+        acc[skill.category].push(skill);
+        return acc;
+    }, {});
+
     return (
         <section className="skills-section" ref={ref}>
             <motion.div
@@ -44,28 +63,33 @@ const Skills = () => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
             >
-                <h2>My Skills</h2>
-                <div className="skills-grid">
-                    {skillsData.map((skill, index) => (
-                        <motion.div
-                            key={skill.name}
-                            className="skill-card"
-                            variants={itemVariants}
-                        >
-                            <h3>{skill.name}</h3>
-                            <div className="skill-bar-container">
+                <h2>Technical Proficiency</h2>
+                {Object.entries(groupedSkills).map(([category, skills]) => (
+                    <div key={category} className="skills-category">
+                        <h3>{category}</h3>
+                        <div className="skills-grid">
+                            {skills.map((skill, index) => (
                                 <motion.div
-                                    className="skill-bar"
-                                    initial={{ width: 0 }}
-                                    animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-                                    transition={{ duration: 1, delay: index * 0.1 }}
-                                    style={{ backgroundColor: skill.color }}
-                                />
-                                <span className="skill-percentage">{skill.level}%</span>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                                    key={skill.name}
+                                    className="skill-card"
+                                    variants={itemVariants}
+                                >
+                                    <h4>{skill.name}</h4>
+                                    <div className="skill-bar-container">
+                                        <motion.div
+                                            className="skill-bar"
+                                            initial={{ width: 0 }}
+                                            animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
+                                            transition={{ duration: 1, delay: index * 0.1 }}
+                                            style={{ backgroundColor: skill.color }}
+                                        />
+                                        <span className="skill-percentage">{skill.level}%</span>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </motion.div>
         </section>
     );

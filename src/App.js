@@ -103,6 +103,7 @@ function App() {
         </motion.div>
       ) : (
         <>
+          <Particles />
           <ScrollProgress />
           <ScrollToTop />
           <nav className="navigation">
@@ -127,7 +128,7 @@ function App() {
             </div>
           </nav>
 
-          <main>
+          <main className="main-content">
             <AnimatePresence mode="wait">
               <motion.section
                 id="home"
@@ -138,7 +139,6 @@ function App() {
                 exit="exit"
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <Particles />
                 <div className="hero-content">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -183,7 +183,7 @@ function App() {
 
               <motion.section
                 id="about"
-                className="about-section"
+                className="about-section section-transparent"
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -195,7 +195,7 @@ function App() {
 
               <motion.section
                 id="projects"
-                className="projects-section"
+                className="projects-section section-transparent"
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -207,7 +207,7 @@ function App() {
 
               <motion.section
                 id="contact"
-                className="contact-section"
+                className="contact-section section-transparent"
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"

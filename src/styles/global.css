@@ -12,10 +12,16 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background: linear-gradient(45deg,
-            rgba(var(--primary-color-rgb), 0.03),
-            rgba(var(--accent-color-rgb), 0.03));
+    background: var(--bg-color);
     transition: all var(--transition-speed) ease;
+}
+
+.App {
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    background: var(--bg-color);
 }
 
 section {
@@ -25,10 +31,34 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
+    z-index: 2;
     overflow: hidden;
     transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-    background: rgba(var(--bg-color-rgb), 0.7);
-    backdrop-filter: blur(10px);
+    background: transparent !important;
+    backdrop-filter: blur(5px);
+}
+
+.main-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content,
+.about-content,
+.projects-content,
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+.section-transparent {
+    background: transparent !important;
+}
+
+.about-section,
+.projects-section,
+.contact-section {
+    background: transparent !important;
 }
 
 section:not(:in-viewport) {
@@ -62,13 +92,14 @@ section h2 {
 }
 
 .card {
-    background: rgba(var(--bg-color-rgb), 0.8);
+    background: var(--card-bg) !important;
     border-radius: 15px;
     padding: 2rem;
     box-shadow:
         0 4px 6px rgba(var(--primary-color-rgb), 0.02),
         0 10px 15px rgba(var(--primary-color-rgb), 0.03);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.06);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
     transition: all 0.3s ease;
 }
 
@@ -80,13 +111,23 @@ section h2 {
     border-color: rgba(var(--primary-color-rgb), 0.1);
 }
 
+.project-card,
+.contact-form form,
+.modal-content {
+    background: rgba(var(--bg-color-rgb), 0.7) !important;
+    backdrop-filter: blur(8px);
+}
+
 .footer {
     text-align: center;
     padding: 2rem;
-    background: var(--card-bg);
+    position: relative;
+    z-index: 1;
+    background: rgba(var(--bg-color-rgb), 0.9) !important;
     color: var(--text-color);
-    border-top: 1px solid rgba(var(--primary-color-rgb), 0.1);
+    border-top: 1px solid var(--border-color);
     box-shadow: 0 -4px 20px rgba(var(--primary-color-rgb), 0.05);
+    backdrop-filter: blur(8px);
 }
 
 .footer p {

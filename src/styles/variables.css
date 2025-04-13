@@ -1,24 +1,25 @@
 :root {
-    /* Base colors */
-    --primary-color: #6c63ff;
-    --primary-color-rgb: 108, 99, 255;
-    --accent-color: #4c45cc;
-    --accent-color-rgb: 76, 69, 204;
-    --text-color: #2d2d2d;
-    --text-color-light: #666666;
+    /* Base colors - Dark theme by default */
+    --primary-color: #8b84ff;
+    --primary-color-rgb: 139, 132, 255;
+    --accent-color: #6c63ff;
+    --accent-color-rgb: 108, 99, 255;
+    --text-color: #e0e0e0;
+    --text-color-light: #a0a0a0;
 
     /* Background colors */
-    --bg-color: #ffffff;
-    --bg-color-rgb: 255, 255, 255;
-    --card-bg: #f8f9fa;
-    --section-bg: #f4f6f8;
+    --bg-color: #121212;
+    --bg-color-rgb: 18, 18, 18;
+    --card-bg: rgba(30, 30, 30, 0.7);
+    --section-bg: transparent;
+    --border-color: #2a2a2a;
 
     /* Effects */
-    --soft-glow: 0 5px 15px rgba(var(--primary-color-rgb), 0.15);
-    --primary-glow: 0 8px 25px rgba(var(--primary-color-rgb), 0.3);
+    --soft-glow: 0 5px 15px rgba(139, 132, 255, 0.15);
+    --primary-glow: 0 8px 25px rgba(139, 132, 255, 0.2);
+    --scroll-progress-bg: rgba(139, 132, 255, 0.15);
 
     /* Progress bar */
-    --scroll-progress-bg: rgba(var(--primary-color-rgb), 0.1);
     --scroll-progress-fill: var(--primary-color);
 
     /* Transitions */
@@ -47,16 +48,17 @@
 }
 
 [data-theme="light"] {
-    --bg-color: #ffffff;
-    --bg-color-rgb: 255, 255, 255;
+    --primary-color: #6c63ff;
+    --primary-color-rgb: 108, 99, 255;
+    --accent-color: #4c45cc;
+    --accent-color-rgb: 76, 69, 204;
     --text-color: #2d2d2d;
     --text-color-light: #666666;
-    --primary-color: #6c63ff;
-    --accent-color: #4c45cc;
-    --primary-color-rgb: 108, 99, 255;
-    --accent-color-rgb: 76, 69, 204;
-    --card-bg: #f8f9fa;
-    --section-bg: #f4f6f8;
+    --bg-color: #ffffff;
+    --bg-color-rgb: 255, 255, 255;
+    --card-bg: rgba(248, 249, 250, 0.7);
+    --section-bg: transparent;
+    --border-color: rgba(108, 99, 255, 0.1);
 }
 
 /* Apply transitions to common elements */
@@ -73,45 +75,22 @@ button,
     transition: var(--theme-transition);
 }
 
-/* Dark theme overrides */
-[data-theme="dark"] {
-    --primary-color: #8b84ff;
-    --primary-color-rgb: 139, 132, 255;
-    --accent-color: #6c63ff;
-    --accent-color-rgb: 108, 99, 255;
-    --text-color: #e0e0e0;
-    --text-color-light: #a0a0a0;
+/* Dark theme enhancements */
+--shadow-color: rgba(0, 0, 0, 0.5);
+--hover-shadow: var(--primary-glow);
 
-    /* Dark theme background colors */
-    --bg-color: #1a1a1a;
-    --bg-color-rgb: 26, 26, 26;
-    --card-bg: #2d2d2d;
-    --section-bg: #242424;
-    --border-color: #334155;
-    /* Slate 700 */
-    --secondary-color: #60a5fa;
-    /* Blue 400 for better contrast */
-    --soft-glow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    --primary-glow: 0 8px 25px rgba(var(--primary-color-rgb), 0.2);
-    --scroll-progress-bg: rgba(var(--primary-color-rgb), 0.15);
+.skill-card:hover,
+.project-card:hover {
+    box-shadow: var(--primary-glow);
+}
 
-    /* Dark theme enhancements */
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --hover-shadow: var(--primary-glow);
+.social-link:hover {
+    box-shadow: var(--accent-glow);
+}
 
-    .skill-card:hover,
-    .project-card:hover {
-        box-shadow: var(--primary-glow);
-    }
-
-    .social-link:hover {
-        box-shadow: var(--accent-glow);
-    }
-
-    .navigation {
-        background: rgba(var(--bg-color), 0.8);
-        backdrop-filter: blur(10px);
-    }
+.navigation {
+    background: rgba(var(--bg-color), 0.8);
+    backdrop-filter: blur(10px);
 }
 
 /* Media query variables */

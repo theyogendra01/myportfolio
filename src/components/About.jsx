@@ -1,15 +1,24 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaDownload } from 'react-icons/fa';
 import { SiGeeksforgeeks, SiLeetcode, SiHackerrank } from 'react-icons/si';
 import profileImage from '../assets/profile.jpg';
-import Resume from '../assets/Yogender.pdf';
 
 const About = () => {
     const [ref, inView] = useInView({
         threshold: 0.3,
         triggerOnce: true
     });
+
+    const handleResumeDownload = (e) => {
+        e.preventDefault();
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = '/Yogender.pdf'; // This will look for the file in the public folder
+        link.download = 'Yogender_Swami_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     const codingProfiles = [
         {
@@ -72,15 +81,14 @@ const About = () => {
                             ))}
                         </div>
                     </div>
-                    <motion.a
-                        href={Resume}
-                        download="Yogender_Swami_Resume.pdf"
+                    <motion.button
+                        onClick={handleResumeDownload}
                         className="resume-button"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <FaDownload /> My Resume
-                    </motion.a>
+                        My Resume
+                    </motion.button>
                     <div className="tech-stack">
                         <h3>My Tech Stack</h3>
                         <div className="tech-categories">

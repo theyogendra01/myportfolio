@@ -13,7 +13,7 @@ const About = () => {
         e.preventDefault();
         // Create a link element
         const link = document.createElement('a');
-        link.href = '/Yogender.pdf'; // This will look for the file in the public folder
+        link.href = '/Yogender-fe.pdf'; // This will look for the file in the public folder
         link.download = 'Yogender_Swami_Resume.pdf';
         document.body.appendChild(link);
         link.click();
